@@ -126,7 +126,7 @@ kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernetes/
 kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
 ```
 
-网络插件安装完成后偶，再次查看所有pods的运行情况：
+网络插件安装完成后，再次查看所有pods的运行情况：
 
 ![image](./images/kubectl-pods-running.png)
 
