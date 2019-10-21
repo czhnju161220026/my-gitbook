@@ -57,6 +57,11 @@
 
   + 软件安装
 
+    ``` shell
+    #最好指定版本
+    sudo apt-get install kubectl=1.15.3-00 kubeadm=1.15.3-00 kubelet=1.15.3-00 -y -allow-unauthenticated
+    ```
+    
     ![image](./images/install.png)
 
 ## 主节点配置
@@ -78,7 +83,7 @@
   参数来指定镜像仓库。使用阿里云的镜像仓库进行安装。
 
   ```shell
-  sudo kubeadm init --image-repository registry.aliyuncs.com/google_containers --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=192.168.218.162
+  sudo kubeadm init --image-repository registry.aliyuncs.com/google_containers --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=192.168.218.162
   ```
 
   ![image](./images/kubeadm-init-success.png)
