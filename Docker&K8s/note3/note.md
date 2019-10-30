@@ -177,7 +177,35 @@ kubectl apply -f http://mirror.faasx.com/kubernetes/dashboard/master/src/deploy/
 
   ![image](./images/dashboard.png)
 
+### 远程访问dashboard
 
+使用kubectl proxy只能在master节点上访问dashboard，远程访问需要进行如下设置：
+
+``` shell
+kubectl -n kube-system edit service kubernetes-dashboard
+```
+
+然后修改配置文件，添加nodePort为30007，将type修改为NodePort：
+
+<img src="./images/edit.png" alt="image" style="zoom:50%;" />
+
+之后就可以通过[https://<master-ip>:30007](https://<master-ip>:30007)对集群对dashboard进行访问，注意访问时可能会出现链接不是安全链接对情况。
+
+![images](./images/out.png)
+
+## 加入其它节点
+
+在其他已经安装好kubernetes的机器上用root用户执行加入master节点的命令：
+
+![image](./images/join.png)
+
+然后在master节点上使用<code>kubectl get nodes </code> 可以查看集群中所有的节点：
+
+![image](./images/getnodes.png)
+
+在dash-board上也可以查看到：
+
+![image](./images/clusters.png)
 
 ## 后续工作
 
