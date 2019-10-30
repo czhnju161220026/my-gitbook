@@ -10,32 +10,23 @@
     </tr>
 	<tr>
         <td>user</td>
-        <td>kubemaster</td>
-        <td>192.168.202.130</td>
+        <td>ubuntu18</td>
+        <td>192.168.1.105</td>
 	</tr>
     <tr>
         <td>user</td>
         <td>kubeworker1</td>
         <td>192.168.202.128</td>
 	</tr>
-	<tr>
-        <td>user</td>
-        <td>kubeworker2</td>
-        <td>192.168.202.129</td>
-	</tr>
 </table>
 
-+ 系统版本 UbuntuServer 16.04LTS
++ 系统版本 Ubuntu 18.04LTS
 
 + 注意，虚拟机的处理器个数要设置为2个
 
-+ 在每个节点的<code>/etc/hosts</code>文件中上配置好主机名映射
++ 配置好后使用ping来测试主机之间是否可以正常通讯：
 
-  ![image](./images/hosts.png)
-
-  配置好后使用ping来测试主机之间是否可以正常通讯：
   
-  ![image](./images/ping.png)
 
 ## 节点配置
 
@@ -47,9 +38,8 @@
 
   ``` shell
 user@kubemaster:~$ sudo usermod -aG docker $USER
-  user@kubemaster:~$ sudo reboot
-```
-  
+  user@kubemaster:~$ sudo reboo
+  ```
 + docker安装测试
 
   + 登陆docker账户
@@ -64,19 +54,25 @@ user@kubemaster:~$ sudo usermod -aG docker $USER
 
   + 软件源配置
 
-    在/etc/apt/source.list.d/路径下创建文件kubernetes.list，写入中科大的镜像地址**deb http://mirrors.ustc.edu.cn/kubernetes/apt kubernetes-xenial main**。然后执行apt-get update
+    在/etc/apt/source.list.d/路径下创建文件kubernetes.list，写入中科大的镜像地址**deb http://mirrors.ustc.edu.cn/kubernetes/apt kubernetes-xenial main**。然后执行apt-get update，注意在这步如果遇到GPG error提示公钥缺失，则执行以下的命令添加公钥，然后再update。
 
+    ```shell
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys <PUBKEY>
+    ```
+  
+    其中<PUBKEY>就是提示你缺失的公钥。例如BAF9A6FBAF9A6FBAF9A6F。
+  
     ![image](./images/source.png)
-
+  
   + 软件安装：在每个机器上安装kubernetes组件，注意版本号，选用较为稳定的1.15版本
   
     ``` shell
     # 指定版本为1.15
     sudo apt-get install kubectl=1.15.3-00 kubeadm=1.15.3-00 kubelet=1.15.3-00 -y --allow-unauthenticated
     ```
-    
-    ![image](./images/validate.png)
-    
+
+![image](./images/validate.png)
+
   + 在所有节点上禁用swap
   
     ``` shell
@@ -139,20 +135,6 @@ user@kubemaster:~$ sudo usermod -aG docker $USER
 
   coredns服务也变为了running，网络插件安装成功。
 
-## 加入Worker节点
-
-在两个woker节点上用**root**用户执行加入指令：
-
-```shell
-root$: kubeadm join 192.168.202.130:6443 --token bdy22a.6l18mlolvqmpc9zm --discovery-token-ca-cert-hash sha256:f3a9497faf12ee3dddf0eef44a0c532daf719913d282767d9ebb7e3678ac50bc
-```
-
-执行完成后，等待一会，在主节点上执行查看集群中节点的命令可以看到如下的输出：
-
-![image](./images/nodes.png)
-
-说明worker结点加入成功。
-
 ## 可视化工具(Dash board)安装
 
 Kubernetes Dashboard 是一个管理Kubernetes集群的全功能Web界面，旨在以UI的方式完全替代命令行工具（kubectl 等）。由于该工具的镜像仓库也被墙了，所以使用国内镜像安装，在Master结点上执行：
@@ -165,15 +147,11 @@ kubectl apply -f http://mirror.faasx.com/kubernetes/dashboard/master/src/deploy/
 
 ![image](./images/dashboard-running.png)
 
-然后对dash board进行配置，将type从ClusterIP修改为NodePort，之后就可以从**https://<master_ip>:port**访问集群的Web UI了。
+### 在本地访问
 
-```shell
-kubectl edit service kubernetes-dashboard -n kube-system
-```
+我们在命令行中执行<code>kubectl proxy</code>, 	开启代理服务后，打开浏览器http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/， 就可以进入dash-borad的登录页面：
 
-![image](./images/dashboard-config.png)
-
-![image](./images/dashboard-login.png)
+![image](./images/login.png)
 
 ### 添加dashboard admin
 
