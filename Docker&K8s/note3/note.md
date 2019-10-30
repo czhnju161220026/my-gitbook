@@ -15,8 +15,8 @@
 	</tr>
     <tr>
         <td>user</td>
-        <td>kubeworker1</td>
-        <td>192.168.202.128</td>
+        <td>ubuntu18-2</td>
+        <td>192.168.1.108</td>
 	</tr>
 </table>
 
