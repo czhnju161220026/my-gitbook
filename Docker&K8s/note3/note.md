@@ -38,7 +38,7 @@
 
   ``` shell
 user@kubemaster:~$ sudo usermod -aG docker $USER
-  user@kubemaster:~$ sudo reboo
+  user@kubemaster:~$ sudo reboot
   ```
 + docker安装测试
 

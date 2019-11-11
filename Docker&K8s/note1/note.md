@@ -23,7 +23,7 @@
 
 ### Docker和kubernetes
 
-由于Docker镜像运行无需关心环境问题，而且轻量级，方便动态扩容和缩容，所以在微服务架构中特别适用。kubernetes是一套对Docker容器进行管理调度的集群管理平台，类似与MapReduce框架，它有一个Master节点和若干个Worker节点。
+由于Docker镜像运行无需关心环境问题，而且轻量级，方便动态扩容和缩容，所以在微服务架构中特别适用。kubernetes是一套对Docker容器进行管理调度的集群管理平台，类似于MapReduce框架，它有一个Master节点和若干个Worker节点。
 
 
 
