@@ -69,7 +69,7 @@ def main():
     # 分布式采样器
     sampler = torch.utils.data.distributed.DistributedSampler(trainset)
     # 加载训练集
-    trainloader = data.DataLoader(dataset=trainset, batch_size=args.train_batch, shuffle=False, sampler=sampler)
+    trainloader = data.DataLoader(dataset=trainset, batch_size=args.train_batch * dist.get_world_size(), shuffle=False, sampler=sampler)
 		# 测试集
     testset = ...
     # 在分布式训练中，一个batch会被划分为几等份，分配给每个GPU进行训练。
