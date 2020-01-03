@@ -2,6 +2,7 @@
 * [前言](README.md)
 * [CNCF 阿里云公开课](CNCF/README.md)
     * [容器基本概念](CNCF/note1/note.md)
+    * [k8s核心概念](CNCF/note2/note.md)
 * [Docker和K8s](Docker&K8s/README.md)
     * [Docker基础学习](Docker&K8s/note1/note.md)
     * [Docker微服务学习](Docker&K8s/note2/note.md)
