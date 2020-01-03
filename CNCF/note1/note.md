@@ -8,7 +8,7 @@
 
 + 容器：namespace提供资源视图隔离；chroot提供独立的文件系统；cgroup：控制资源使用率
 
-  ![image-20200103165746609](/Users/cui/WorkSpace/DockerSpace/my-gitbook/CNCF/note1/figure/1.png)
+  ![image-20200103165746609](figure/1.png)
 
   其实从代码角度理解是最容易的。就是在进程的struct里面加多了几个变量用来区分uts,ipc等等，比如两个进程管理uts的变量一样，那么就共享hostname 和 NIS信息，如果不一样就各自玩各自的。IPC，如果一样的话，一个进程创建的 消息队列，另一个进程也能看到。不一样的话就看不到。
 
@@ -90,4 +90,4 @@ CMD ["app"]
 + VM: hypervisior虚拟化技术，模拟硬件资源，需要Guest OS；隔离效果更好，但是消耗更多的资源。
 + 容器：无Guest，启动快，进程级别的隔离。（只是需要一个独立文件系统，提供运行需要的文件），隔离效果弱于VM。
 
-![image-20200103184443726](/Users/cui/WorkSpace/DockerSpace/my-gitbook/CNCF/note1/figure/2.png)
+![image-20200103184443726](figure/2.png)
