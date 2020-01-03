@@ -1,2 +1,2 @@
-* [深度学习分布式实验](Distributed/README.md)
-    * [Pytorch DDP和horovod分布式实验](Distributed/note1/note.md)
+* 深度学习分布式实验
+    * [Pytorch DDP和horovod分布式实验](note1/note.md)
