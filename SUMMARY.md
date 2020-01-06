@@ -10,7 +10,7 @@
     * [K8s简单实践](Docker&K8s/note4/note.md)
 * [深度学习分布式实验](Distributed/README.md)
     * [Pytorch DDP和horovod分布式实验](Distributed/note1/note.md)
-    * [GPU调度实验] (Distributed/note2/note.md)
+    * [GPU调度实验](Distributed/note2/note.md)
 * [自动化机器学习](AutoML/README.md)
     * [NNI](AutoML/note1/note.md)
 
