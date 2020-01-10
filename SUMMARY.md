@@ -8,6 +8,7 @@
     * [k8s核心概念](CNCF/note2/note.md)
     * [Pod与容器设计模式](CNCF/note3/note.md)
     * [应用编排与管理：核心原理](CNCF/note4/note.md)
+    * [应用编排与管理：Deployment](CNCF/note5/note.md)
 
 <br/>
 
