@@ -4,3 +4,4 @@
   + [Pod与容器设计模式](note3/note.md)
   + [应用编排与管理：核心原理](note4/note.md)
   + [应用编排与管理：Deployment](note5/note.md)
+  + [应用编排与管理：Job & DaemonSet](note6/note.md)

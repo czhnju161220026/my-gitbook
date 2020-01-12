@@ -9,6 +9,7 @@
     * [Pod与容器设计模式](CNCF/note3/note.md)
     * [应用编排与管理：核心原理](CNCF/note4/note.md)
     * [应用编排与管理：Deployment](CNCF/note5/note.md)
+    * [应用编排与管理：Job & DaemonSet](CNCF/note6/note.md)
 
 <br/>
 
