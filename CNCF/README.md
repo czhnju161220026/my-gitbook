@@ -5,3 +5,4 @@
   + [应用编排与管理：核心原理](note4/note.md)
   + [应用编排与管理：Deployment](note5/note.md)
   + [应用编排与管理：Job & DaemonSet](note6/note.md)
+  + [应用编排与管理： 应用配置管理](note7/note.md)
