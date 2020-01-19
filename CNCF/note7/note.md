@@ -11,8 +11,6 @@
 5. 容器运行的安全管控（SecurityContext）
 6. 容器启动的前置条件 （InitContainers）
 
-这里，我们主要介绍ConfigMap和Secret
-
 ## 2. ConfigMap
 
 ConfigMap主要管理容器运行所需要的配置文件，环境变量，命令行参数等可变配置。用于解耦容器镜像和可变配置，从而保障工作负载的可移植性。
@@ -286,5 +284,62 @@ pwd
 user
 ```
 
+### 3.3 Secret注意点
+
++ Secret 文件大小限制1MB
++ Secret虽然采用base64编码，但是可以简单的解码查看原始信息，因此，对于机密信息采用Secret存储仍需慎重考虑或者对Secret访问者进行控制。可以使用Kubernetes + Vault来解决敏感信息的加密和权限管理。
++ 推荐使用GET来获取需要的Secret，从而减少Secret暴露的可能性。
 
 
+
+## 4. ServiceAccount
+
+ServiceAccount主要用于解决Pod在集群中身份认证的问题。其中认证使用的授权信息，则利用前面讲到的Secret进行管理。
+
+
+
+## 5. Resrouce
+
+我们可以通过容器资源配置管理限定容器的资源。可以控制的资源类型有：
+
++ CPU: 单位 millicore（1 core = 1000 millicore）
+
++ Memory： 单位Byte
+
++ ephemeral storage（临时存储）：单位Byte
+
++ 自定义资源：配置时必须为整数。
+
+  <img src="figure/1.png" alt="image" style="zoom:70%;" />
+
+
+
+## 6. Security Context
+
+Security Context 主要用于限制容器的行为，从而保障系统和其他容器的安全。
+
+1. 容器级别的Security Context： 仅对该容器声响
+2. Pod级别的Security Context： 对Pod中的所有容器生效
+3. Pod Security Policies： 对集群内所有的Pod生效
+
+权限和访问控制设置项：
+
+1. Discretionary Access Control：根据用户id和组id控制文件的访问权限
+2. SELinux：通过SELinux的策略配置控制用户，进程等对文件等访问控制
+3. privileged：容器是否为特权模式
+4. Linux Capabilities： 给特定进程配置privileged能力
+5. AppArmor：控制可执行文件等访问控制权限（读写文件/目录，网络端口读写等）
+6. Seccomp：控制进程可以操作的系统调用
+7. AllowPrivilegeEscalation： 控制一个进程是否比其父进程获取更多的权限
+
+![image](figure/2.png)
+
+## 7. InitContainer
+
+InitContainer在sidecar的设计模式中有介绍到。它和普通Container的区别在于：
+
+1. InitContainer会先于普通的Container启动执行，直到所有的InitContainer执行成功后，普通Container才会被启动
+2. Pod中多个InitContainer串行启动，普通Container并行启动
+3. InitContainer执行完后结束退出，普通容器可能一直执行或者重启
+
+InitContainer一般用于普通Container的初始化（例如将配置文件拷贝到共享的Volume）以及前置条件检验（例如网络连通检验）
