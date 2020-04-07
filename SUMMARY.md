@@ -12,6 +12,7 @@
     * [应用编排与管理：Job & DaemonSet](CNCF/note6/note.md)
     * [应用编排与管理：应用配置管理](CNCF/note7/note.md)
     * [持久化存储核心知识](CNCF/note8/note.md)
+    * [可观测性1:应用健康](CNCF/note9/note.md)
 
 <br/>
 

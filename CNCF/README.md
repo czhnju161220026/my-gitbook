@@ -7,4 +7,5 @@
   + [应用编排与管理：Job & DaemonSet](note6/note.md)
   + [应用编排与管理： 应用配置管理](note7/note.md)
   + [持久性存储核心知识](note8/note.md)
+  + [可观测性1：应用健康](note9/note.md)
 
